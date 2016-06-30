@@ -1,9 +1,18 @@
 #!/usr/bin/env node
+var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 
+// See what file we are running
+// First arg is node, second is this script, third is user-provided
+var filename = process.argv[2];
+if (!filename) {
+  filename = 'index.js';
+}
+var entry = path.resolve(process.cwd(), filename);
+
 var config = {
-  entry: './shim.js',
+  entry: entry,
   output: { path: __dirname, filename: 'bundle.js' },
   module: {
     loaders: [
@@ -37,5 +46,5 @@ var server = new WebpackDevServer(compiler, options);
 
 var port = 8080;
 server.listen(port, function(error) {
-  console.log('running at http://localhost:' + port);
+  console.log('running ' + filename + ' at http://localhost:' + port);
 });
