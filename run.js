@@ -20,7 +20,7 @@ var templateContent = ('<!DOCTYPE html>\n' +
 '  <body>\n' +
 '  <div id="root"></div></body>\n' +
 '</html>');
-templateContent = templateContent.replace(/TITLE/, filename);
+templateContent = templateContent.replace(/TITLE/, 'react-run ' + filename);
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = {
