@@ -9,7 +9,7 @@ for (var key in index) {
   if (root) {
     throw new Error('you should only export one thing');
   }
-  root = index[key]
+  root = index[key];
 }
 
 ReactDOM.render(React.createElement(root, null),

@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  entry: './runner.js',
+  entry: './shim.js',
   output: { path: __dirname, filename: 'bundle.js' },
   module: {
     loaders: [
