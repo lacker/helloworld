@@ -11,21 +11,34 @@ if (!filename) {
 }
 var entry = path.resolve(process.cwd(), filename);
 
+var templateContent = ('<!DOCTYPE html>\n' +
+'<html>\n' +
+'  <head>\n' +
+'    <meta charset="UTF-8">\n' +
+'    <title>TITLE</title>\n' +
+'  </head>\n' +
+'  <body>\n' +
+'  <div id="root"></div></body>\n' +
+'</html>');
+templateContent = templateContent.replace(/TITLE/, filename);
+
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = {
   entry: entry,
   output: { path: __dirname, filename: 'bundle.js' },
   module: {
-    loaders: [
-      {
-        test: /.jsx?$/,
+    loaders: [{
+        test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react', 'stage-2']
-        }
-      }
-    ]
+        },
+      }],
   },
+  plugins: [new HtmlWebpackPlugin({
+    templateContent: templateContent,
+  })],
 };
 
 var compiler = webpack(config);
